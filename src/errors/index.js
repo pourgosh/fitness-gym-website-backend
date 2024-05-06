@@ -8,6 +8,7 @@ export const errorHandler = (app) => {
     if (!res.headersSent) {
       res.json({
         message: "Internal server error. Check the server console",
+        error: err,
       });
     }
   });
