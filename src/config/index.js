@@ -11,7 +11,7 @@ export const appConfig = (app) => {
       optionsSuccessStatus: 200,
     })
   );
-  app.use(express.json);
+  app.use(express.json());
   app.use(logger("dev"));
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());

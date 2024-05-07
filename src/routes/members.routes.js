@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import memberModel from "../models/member.model";
+import memberModel from "../models/member.model.js";
 
 const USER_ROUTES = express.Router();
 
@@ -9,7 +9,7 @@ USER_ROUTES.post("/members", async (req, res, next) => {
     const newMember = req.body;
     const memberInDB = await memberModel.findOne({ email: newMember.email });
     if (memberInDB) {
-      res.json("user already exists");
+      return res.json("member already exists in DB");
     }
     const hashedPassword = await bcrypt.hash(newMember.password, 12);
     const createMember = await new memberModel({
@@ -17,7 +17,10 @@ USER_ROUTES.post("/members", async (req, res, next) => {
       password: hashedPassword,
     });
     createMember.save();
-    res.json("new member created with the following properties:", createMember);
+    res.json({
+      msg: "new member created with the following properties:",
+      newMember: createMember,
+    });
   } catch (err) {
     console.error(err);
     next(err);
