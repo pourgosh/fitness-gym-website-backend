@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
     direction: { type: String },
     price: { type: Number, required: true },
     manufacturer: { type: String },
-    alergens: [String],
+    allergens: [String],
     image: {
       type: String,
       required: true,
