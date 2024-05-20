@@ -4,12 +4,23 @@ const MONGO_URI =
   process.env.MONGO_URI ||
   `mongodb+srv://ppourgoshtasbi:pc71KxH71oXrIkNM@cluster0.xxfjrqm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
+const client = new MongoClient(MONGO_URI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
+
 export const setConnection = async () => {
   try {
-    const connectToMongo = await mongoose.connect(MONGO_URI);
-    const dbName = connectToMongo.connections[0].name;
-    console.log(`connect to mongoDB, name: ${dbName}`);
-  } catch (err) {
-    console.error(err);
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
   }
 };
