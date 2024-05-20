@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const MONGO_URI = "mongodb://localhost:27017/fitness-gym-website";
+const MONGO_URI =
+  process.env.MONGO_URI ||
+  `mongodb+srv://ppourgoshtasbi:pc71KxH71oXrIkNM@cluster0.xxfjrqm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 export const setConnection = async () => {
   try {
