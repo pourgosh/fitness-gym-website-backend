@@ -10,7 +10,6 @@ export const setConnection = async (req, res, next) => {
     console.log(`connect to mongoDB, name: ${dbName}`);
   } catch (err) {
     console.error(err);
-    res.json({ msg: "error connecting to database", error: err });
     next(err);
   }
 };
