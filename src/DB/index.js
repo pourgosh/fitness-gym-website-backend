@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const MONGO_URI =
   process.env.MONGODB_URI ||
-  `mongodb+srv://ppourgoshtasbi:pc71KxH71oXrIkNM@cluster0.xxfjrqm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+  `mongodb+srv://ppourgoshtasbi:pc71KxH71oXrIkNM@cluster0.xxfjrqm.mongodb.net/MUTANT-FITNESS`;
 const clientOptions = {
   serverApi: { version: "1", strict: true, deprecationErrors: true },
 };
