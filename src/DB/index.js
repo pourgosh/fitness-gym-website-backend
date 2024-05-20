@@ -2,19 +2,14 @@ import mongoose from "mongoose";
 
 const MONGO_URI =
   process.env.MONGODB_URI ||
-  `mongodb+srv://ppourgoshtasbi:pc71KxH71oXrIkNM@cluster0.xxfjrqm.mongodb.net/MUTANT-FITNESS`;
-const clientOptions = {
-  serverApi: { version: "1", strict: true, deprecationErrors: true },
-};
+  "mongodb+srv://ppourgoshtasbi:pc71KxH71oXrIkNM@cluster0.xxfjrqm.mongodb.net/mutant-fitness?retryWrites=true&w=majority&appName=Cluster0";
+
 export const setConnection = async () => {
   try {
-    await mongoose.connect(MONGO_URI, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
+    const connectToMongo = await mongoose.connect(MONGO_URI);
+    const dbName = connectToMongo.connections[0].name;
+    console.log(`connect to mongoDB, name: ${dbName}`);
+  } catch (err) {
+    console.error(err);
   }
 };
