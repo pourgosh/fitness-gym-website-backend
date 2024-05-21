@@ -7,7 +7,7 @@ export const appConfig = (app) => {
   app.set("trust proxy", 1);
   app.use(
     cors({
-      origin: "https://mutant-fitness.netlify.app",
+      origin: "http://localhost:5173",
       optionsSuccessStatus: 200,
       methods: ["POST", "GET", "PUT", "DELETE"],
       credentials: true,
@@ -17,7 +17,7 @@ export const appConfig = (app) => {
   app.options(
     "*",
     cors({
-      origin: "https://mutant-fitness.netlify.app",
+      origin: "http://localhost:5173",
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
     })
