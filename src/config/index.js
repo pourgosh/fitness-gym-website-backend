@@ -13,6 +13,15 @@ export const appConfig = (app) => {
       credentials: true,
     })
   );
+  // Handle preflight requests
+  app.options(
+    "*",
+    cors({
+      origin: "https://mutant-fitness.netlify.app",
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+    })
+  );
   app.use(express.json());
   app.use(logger("dev"));
   app.use(express.urlencoded({ extended: false }));
