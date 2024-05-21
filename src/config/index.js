@@ -9,6 +9,8 @@ export const appConfig = (app) => {
     cors({
       origin: "https://mutant-fitness.netlify.app",
       optionsSuccessStatus: 200,
+      methods: ["POST", "GET", "PUT", "DELETE"],
+      credentials: true,
     })
   );
   app.use(express.json());
