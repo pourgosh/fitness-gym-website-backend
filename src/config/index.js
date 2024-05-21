@@ -13,14 +13,6 @@ export const appConfig = (app) => {
       credentials: true,
     })
   );
-  app.options("/product", (req, res) => {
-    res.set({
-      "Access-Control-Allow-Origin": "https://mutant-fitness.netlify.app",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-      "Access-Control-Allow-Credentials": "true",
-    });
-    res.sendStatus(200);
-  });
   app.use(express.json());
   app.use(logger("dev"));
   app.use(express.urlencoded({ extended: false }));
